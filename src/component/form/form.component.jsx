@@ -1,5 +1,6 @@
 import React from 'react';
 import { Input } from '../input/input.component';
+import { Label } from '../label/label.component';
 
 export class Form extends React.Component {
 
@@ -26,6 +27,8 @@ export class Form extends React.Component {
         return (
             <form>
 
+                {/* <Label htmlFor='login'
+                    value='Email' /> */}
                 <Input
                     type='text'
                     value={this.state.login}
@@ -33,6 +36,8 @@ export class Form extends React.Component {
                     onChange={this.handleChange}
                 />
 
+                {/* <Label htmlFor='password'
+                    value='Password' /> */}
                 <Input
                     type='password'
                     value={this.state.password}

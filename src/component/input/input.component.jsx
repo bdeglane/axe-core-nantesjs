@@ -12,5 +12,6 @@ export const Input = ({ type, value, name, onChange }) =>
         type={type}
         value={value}
         name={name}
+        id={name}
         onChange={onChange}
     />);
