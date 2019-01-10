@@ -5,7 +5,7 @@ import { Input } from './input.component';
 import { mountToDoc } from '../../setupTests';
 
 
-fdescribe('<Input />', () => {
+describe('<Input />', () => {
 
     let input;
     let component;
