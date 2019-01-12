@@ -25,6 +25,14 @@ jobs: # a collection of steps
       - run: # run coverage report
           name: code-coverage
           command: './node_modules/.bin/nyc report --reporter=text-lcov'
+      - run:
+          name: Install JUnit coverage reporter
+          command: yarn add --dev jest-junit
+      - run:
+          name: Run tests with JUnit as reporter
+          command: jest --ci --reporters=default --reporters=jest-junit
+          environment:
+              JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_artifacts: # special step to save test results as as artifact
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
           path: test-results.xml
