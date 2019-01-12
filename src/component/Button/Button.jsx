@@ -1,12 +1,15 @@
 import React from 'react'
-import { string } from 'prop-types'
+import { func, string } from 'prop-types'
+
+import './Button.css'
 
 Button.propTypes = {
-  lable: string.isRequired,
+  label: string.isRequired,
+  onClick: func,
 }
 
-export function Button ({ label }) {
+export function Button ({ label, onClick }) {
   return (
-    <button>{label}</button>
+    <button onClick={onClick}>{label}</button>
   )
 }

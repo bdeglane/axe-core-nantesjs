@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Input } from '../Input'
 
 import './Form.css'
+import { Button } from '../Button'
 
 export class Form extends Component {
   state = {
@@ -35,6 +36,9 @@ export class Form extends Component {
           name='password'
           onChange={this.handleChange}
         />
+        <span>
+          <Button label="Valider" onClick={() => null}/>
+        </span>
       </form >
     )
   }
