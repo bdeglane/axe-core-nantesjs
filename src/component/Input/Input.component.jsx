@@ -1,5 +1,7 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from 'react'
 import { func, string } from 'prop-types'
+
+import './Input.css'
 
 Input.propTypes = {
   label: string,
@@ -8,15 +10,6 @@ Input.propTypes = {
   type: string.isRequired,
   value: string.isRequired,
 }
-
-/**
- *
- * @param {string} label
- * @param {string} type
- * @param {string} value
- * @param {string} name
- * @param {(string)=> void)} onChange
- */
 
 export function Input ({ label, name, onChange, type, value }) {
   return (

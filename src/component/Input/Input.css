@@ -1,0 +1,10 @@
+input {
+    border-radius: 3px;
+    border-style: none;
+    padding: .3rem;
+}
+
+label {
+    margin-bottom: .3rem;
+    margin-top: 1rem;
+}

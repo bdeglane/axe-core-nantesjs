@@ -4,13 +4,11 @@ label {
 }
 
 input {
-    border-radius: 3px;
-    border-style: none;
-    padding: .3rem;
     width: 100%;
 }
 
-label {
-    margin-bottom: .3rem;
+span {
+    display: flex;
+    justify-content: flex-end;
     margin-top: 1rem;
 }
