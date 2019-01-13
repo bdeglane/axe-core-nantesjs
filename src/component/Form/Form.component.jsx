@@ -6,8 +6,8 @@ import { Button } from '../Button'
 
 export class Form extends Component {
   state = {
-      login: '',
-      password: '',
+    login: '',
+    password: '',
   }
 
   handleChange = (event) => {
@@ -21,12 +21,24 @@ export class Form extends Component {
   render() {
     return (
       <form>
+
+        <p className="sr-only" id="decription-login">
+          Entrez une adresse email en @ nantes js .fr
+        </p>
+
+        <p className="sr-only" id="decription-pass">
+          Minimun 8 caractères avec au moins une majuscule et un nombre
+        </p>
+
         <Input
           label="Email"
           type='text'
           value={this.state.login}
           name='login'
           onChange={this.handleChange}
+          aria={{
+            describedby: 'decription-login'
+          }}
         />
 
         <Input
@@ -35,9 +47,12 @@ export class Form extends Component {
           value={this.state.password}
           name='password'
           onChange={this.handleChange}
+          aria={{
+            describedby: 'decription-pass'
+          }}
         />
         <span>
-          <Button label="Valider" onClick={() => null}/>
+          <Button label="Valider" onClick={() => null} />
         </span>
       </form >
     )
