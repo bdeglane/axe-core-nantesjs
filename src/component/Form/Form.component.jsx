@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Input } from '../Input'
+import { Input } from '../input'
+import { Button } from '../button'
 
 import './Form.css'
-import { Button } from '../Button'
 
 export class Form extends Component {
   state = {
