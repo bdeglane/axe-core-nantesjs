@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { mount } from 'enzyme'
 import axe from 'axe-core'
-import { axe as jestAxe } from 'jest-axe'
+import { axe as jestAxe, configureAxe } from 'jest-axe'
 
 import { Input } from './Input.component'
 import { mountToDoc } from '../../setupTests'
@@ -48,9 +48,23 @@ describe('<Input />', () => {
       expect(res.violations.length).toEqual(0)
     })
 
-    it.skip('should test axe core with jest plugin', async () => {
+    it('should have label error', async () => {
       const results = await jestAxe(html)
+      expect(results.violations.length).toBe(1)
+    })
 
+    it('should test axe core with jest plugin throw error', async () => {
+      const results = await jestAxe(html)
+      expect(results).toHaveNoViolations()
+    })
+
+    it('should test axe core with jest plugin skip unrelevant error', async () => {
+      const results = await jestAxe(html, {
+        rules: {
+          // for demonstration only, don't disable rules that need fixing.
+          'label': { enabled: false }
+        }
+      })
       expect(results).toHaveNoViolations()
     })
   })
