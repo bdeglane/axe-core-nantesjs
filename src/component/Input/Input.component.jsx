@@ -7,7 +7,7 @@ Input.propTypes = {
   error: string,
   label: string,
   name: string.isRequired,
-  onChange: func.isRequired,
+  onBlur: func.isRequired,
   type: string.isRequired,
   value: string.isRequired,
   aria: shape({
@@ -15,8 +15,7 @@ Input.propTypes = {
   })
 }
 
-export function Input ({ error = null, label, name, onChange, required = false, type, value }) {
-export function Input({ label, name, onChange, type, value, aria = { describedby: '' } }) {
+export function Input ({ error, label, name, onBlur, required = false, type, value }) {
   return (
     <Fragment>
       {label && (
@@ -24,12 +23,12 @@ export function Input({ label, name, onChange, type, value, aria = { describedby
       )}
       <input
         aria-describedby={name}
-        aria-invalid={error !== null}
+        aria-invalid={error !== undefined}
         aria-label={label}
         aria-required={required}
         id={name}
         name={name}
-        onChange={onChange}
+        onBlur={onBlur}
         required={required}
         type={type}
         value={value}
@@ -39,15 +38,6 @@ export function Input({ label, name, onChange, type, value, aria = { describedby
           {error}
         </span>
       )}
-      {label && <label htmlFor={name}>{label}</label>}
-      <input
-        type={type}
-        value={value}
-        name={name}
-        id={name}
-        onChange={onChange}
-        aria-describedby={aria.describedby}
-      />
     </Fragment>
   )
 }

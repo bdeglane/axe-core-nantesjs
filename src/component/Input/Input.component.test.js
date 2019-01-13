@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { mount } from 'enzyme'
 import axe from 'axe-core'
-import { axe as jestAxe, configureAxe } from 'jest-axe'
+import { axe as jestAxe } from 'jest-axe'
 
 import { Input } from './Input.component'
 import { mountToDoc } from '../../setupTests'
