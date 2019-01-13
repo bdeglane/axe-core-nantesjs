@@ -8,6 +8,7 @@ Input.propTypes = {
   label: string,
   name: string.isRequired,
   onBlur: func.isRequired,
+  onChange: func.isRequired,
   type: string.isRequired,
   value: string.isRequired,
   aria: shape({
@@ -15,7 +16,7 @@ Input.propTypes = {
   })
 }
 
-export function Input ({ error, label, name, onBlur, required = false, type, value }) {
+export function Input ({ error, label, name, onBlur, onChange, required = false, type, value }) {
   return (
     <Fragment>
       {label && (
@@ -29,6 +30,7 @@ export function Input ({ error, label, name, onBlur, required = false, type, val
         id={name}
         name={name}
         onBlur={onBlur}
+        onChange={onChange}
         required={required}
         type={type}
         value={value}

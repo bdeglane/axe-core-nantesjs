@@ -16,34 +16,41 @@ export class Form extends Component {
       },
   }
 
-  handleBlur = (event, pattern) => {
-    const { name, value } = event.target
+  handleBlur = event => {
+    const { name, type, value } = event.target
+    let pattern
+
+    if (type === 'email') {
+      pattern = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/
+    } else if (type === 'password') {
+      pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
+    }
 
     this.setState({
       [name]: {
-        hasError: value.match(pattern),
+        hasError: value.length === 0 || !value.match(pattern),
         value,
       },
     })
   }
 
+  handleChange = event => {
+    const { name, value } = event.target
+    this.setState({ [name]: { value } })
+  }
+
   render() {
     const { login, password } = this.state
-    const loginError = {
-      message: 'Entrez une adresse email en @ nantes js .fr',
-      pattern: /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/,
-    }
-    const passwordError = {
-      message: 'Minimun 8 caractères avec au moins une majuscule et un nombre',
-      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-    }
+    const loginError = 'Entrez une adresse email en @ nantes js .fr'
+    const passwordError = 'Minimun 8 caractères avec au moins une majuscule et un nombre'
 
     return (
       <form>
         <Input
-          error={login.hasError ? loginError.message : undefined}
+          error={login.hasError ? loginError : undefined}
           label="Email"
-          onBlur={this.handleBlur(loginError.pattern)}
+          onBlur={this.handleBlur}
+          onChange={this.handleChange}
           name="login"
           required
           type="email"
@@ -51,10 +58,11 @@ export class Form extends Component {
         />
 
         <Input
-          error={password.hasError ? passwordError.message : undefined}
+          error={password.hasError ? passwordError : undefined}
           label="Mot de passe"
           name='password'
-          onBlur={this.handleBlur(passwordError.pattern)}
+          onBlur={this.handleBlur}
+          onChange={this.handleChange}
           required
           type='password'
           value={password.value}
