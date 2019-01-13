@@ -15,10 +15,12 @@ describe('<Input />', () => {
   let wrapper
 
   const props = {
-    id: 'test',
+    error: undefined,
+    label: 'Test input',
     name: 'test',
-    onChange: (c) => c,
-    type: 'text',
+    onBlur: jest.fn(),
+    onChange: jest.fn(),
+    type: 'email',
     value: 'test',
   }
 

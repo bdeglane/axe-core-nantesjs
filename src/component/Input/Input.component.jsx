@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { func, string, shape } from 'prop-types'
+import { func, string } from 'prop-types'
 
 import './Input.css'
 
@@ -11,9 +11,6 @@ Input.propTypes = {
   onChange: func.isRequired,
   type: string.isRequired,
   value: string.isRequired,
-  aria: shape({
-    describedby: string
-  })
 }
 
 export function Input ({ error, label, name, onBlur, onChange, required = false, type, value }) {
