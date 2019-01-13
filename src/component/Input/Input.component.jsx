@@ -23,7 +23,7 @@ export function Input ({ error, label, name, onBlur, onChange, required = false,
         <label htmlFor={name}>{label}</label>
       )}
       <input
-        aria-describedby={name}
+        aria-describedby={`describedby-${name}`}
         aria-invalid={error !== undefined}
         aria-label={label}
         aria-required={required}
@@ -36,7 +36,7 @@ export function Input ({ error, label, name, onBlur, onChange, required = false,
         value={value}
       />
       {error && (
-        <span aria-roledescription="alert" aria-live="polite" id={name}>
+        <span aria-roledescription="alert" aria-live="polite" id={`describedby-${name}`}>
           {error}
         </span>
       )}
