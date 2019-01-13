@@ -6,35 +6,48 @@ import { Button } from '../Button'
 
 export class Form extends Component {
   state = {
-      login: '',
-      password: '',
+      login: {
+        value: '',
+      },
+      password: {
+        value: '',
+      },
   }
 
   handleChange = (event) => {
-    const target = event.target
-    const value = target.type === 'checkbox' ? target.checked : target.value
-    const name = target.name
+    const { name, type, value } = event.target
+    let error
 
-    this.setState({ [name]: value })
+    if (type === 'email') {
+      const emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+      if (!emailValid) error = 'Merci d\'entrer une adresse mail valide'
+    }
+
+    this.setState({ [name]: { error, value } })
   }
 
   render() {
+    const { login, password } = this.state
+
     return (
       <form>
         <Input
+          error={login.error}
           label="Email"
-          type='text'
-          value={this.state.login}
-          name='login'
           onChange={this.handleChange}
+          name="login"
+          required
+          type="email"
+          value={login.value}
         />
 
         <Input
           label="Mot de passe"
-          type='password'
-          value={this.state.password}
           name='password'
           onChange={this.handleChange}
+          required
+          type='password'
+          value={password.value}
         />
         <span>
           <Button label="Valider" onClick={() => null}/>
