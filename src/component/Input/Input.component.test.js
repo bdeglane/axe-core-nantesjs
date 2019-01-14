@@ -51,9 +51,6 @@ describe('<Input />', () => {
     })
 
     it('should test axe core with jest plugin throw error', async () => {
-
-      console.log({ jestAxeComponent });
-
       const results = await jestAxe(jestAxeComponent)
       expect(results).toHaveNoViolations()
     })
