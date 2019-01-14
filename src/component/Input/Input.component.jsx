@@ -13,17 +13,20 @@ Input.propTypes = {
   value: string.isRequired,
 }
 
-export function Input ({ error, label, name, onBlur, onChange, required = false, type, value }) {
+export function Input({ error, label, name, onBlur, onChange, required = false, type, value }) {
+
+  const desc = `describedBy${name}`;
+
   return (
     <div>
       {label && (
         <label htmlFor={name}>{label}</label>
       )}
       <input
-        aria-describedby={`describedby-${name}`}
-        aria-invalid={error !== undefined}
+        aria-describedby={desc}
+        aria-invalid={error !== undefined ? 'true' : 'false'}
         aria-label={label}
-        aria-required={required}
+        aria-required={required ? 'true' : 'false'}
         id={name}
         name={name}
         onBlur={onBlur}
@@ -33,7 +36,10 @@ export function Input ({ error, label, name, onBlur, onChange, required = false,
         value={value}
       />
       {error && (
-        <span aria-roledescription="alert" aria-live="polite" id={`describedby-${name}`}>
+        <span
+          aria-roledescription="alert"
+          aria-live="polite"
+          id={`describedby-${name}`}>
           {error}
         </span>
       )}

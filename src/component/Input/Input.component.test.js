@@ -22,7 +22,11 @@ describe('<Input />', () => {
   }
 
   beforeEach(() => {
-    const component = <Input {...props} />
+    const component = (<div>
+      <p id="describedBytest"></p>
+      <Input {...props} />
+    </div >)
+
     wrapper = mountToDoc(component)
     axeComponent = wrapper.getDOMNode()
 
@@ -31,7 +35,7 @@ describe('<Input />', () => {
 
   describe('Testing Axe Core', () => {
 
-    it.skip('should test axe core', async () => {
+    it('should test axe core', async () => {
       const res = await axe.run(axeComponent, {
         runOnly: {
           values: ["wcag2a", "wcag2aa"]
@@ -46,23 +50,23 @@ describe('<Input />', () => {
       expect(res.violations.length).toEqual(0)
     })
 
-    it.skip('should have label error', async () => {
-      const results = await jestAxe(jestAxeComponent)
-      expect(results.violations.length).toBe(1)
-    })
+    it('should test axe core with jest plugin throw error', async () => {
 
-    it.skip('should test axe core with jest plugin throw error', async () => {
+      console.log({ jestAxeComponent });
+
       const results = await jestAxe(jestAxeComponent)
       expect(results).toHaveNoViolations()
     })
 
-    it.skip('should test axe core with jest plugin skip unrelevant error', async () => {
+    it('should test axe core with jest plugin skip unrelevant error', async () => {
       const results = await jestAxe(jestAxeComponent, {
         rules: {
           // for demonstration only, don't disable rules that need fixing.
-          'label': { enabled: false }
+          'label': { enabled: false },
+          'aria-valid-attr-value': { enabled: false }
         }
       })
+
       expect(results).toHaveNoViolations()
     })
   })
