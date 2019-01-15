@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
+import { func } from 'prop-types'
+
+import { Button } from '../Button'
 import { Input } from '../Input'
 
 import './Form.css'
-import { Button } from '../Button'
 
 export class Form extends Component {
+  static propTypes = {
+    buttonAction: func,
+  }
+
   state = {
       login: {
         hasError: false,
@@ -40,6 +46,7 @@ export class Form extends Component {
   }
 
   render() {
+    const { buttonAction } = this.props
     const { login, password } = this.state
     const loginError = 'Entrez une adresse email en @ nantes js .fr'
     const passwordError = 'Minimun 8 caractères avec au moins une majuscule et un nombre'
@@ -68,7 +75,7 @@ export class Form extends Component {
           value={password.value}
         />
         <span>
-          <Button label="Valider" onClick={() => null} />
+          <Button label="Valider" onClick={buttonAction} />
         </span>
       </form >
     )
