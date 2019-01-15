@@ -15,6 +15,17 @@ Input.propTypes = {
 
 export function Input({ error, label, name, onBlur, onChange, required = false, type, value }) {
 
+  let props = {
+    id: name,
+    name,
+    onBlur,
+    onChange,
+    required,
+    type,
+  }
+
+  if (value) props.value = value
+
   const desc = `describedBy${name}`;
 
   return (
@@ -27,13 +38,7 @@ export function Input({ error, label, name, onBlur, onChange, required = false, 
         aria-invalid={error !== undefined ? 'true' : 'false'}
         aria-label={label}
         aria-required={required ? 'true' : 'false'}
-        id={name}
-        name={name}
-        onBlur={onBlur}
-        onChange={onChange}
-        required={required}
-        type={type}
-        value={value}
+        {...props}
       />
       {error && (
         <span
