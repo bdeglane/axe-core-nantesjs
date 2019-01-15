@@ -7,10 +7,10 @@ class App extends Component {
     return (
       <main className="App">
         <section>
-          <h1 tabIndex="1">
+          <h1 tabIndex="0">
             Bienvenue à ce meetup
           </h1>
-          <p tabIndex="1">
+          <p tabIndex="0">
             C'est un faux formulaire, rien que pour vos yeux.
           </p>
           <Form />
