@@ -10,3 +10,11 @@
 .App > section {
   max-width: 20%;
 }
+
+h1.normal {
+  color: #fff;
+}
+
+h1.notVisible {
+  color: #444;
+}
